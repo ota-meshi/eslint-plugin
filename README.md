@@ -1,2 +1,5 @@
-# eslint-config
-ESLint configurations for me.
+# @ota-meshi/eslint-plugin
+
+**Work In Progress**
+
+ESLint configuration plugin for me.
