@@ -1,6 +1,9 @@
 {
   "name": "@ota-meshi/eslint-plugin",
   "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "ESLint configuration plugin for me.",
   "main": "lib/index.js",
   "engines": {
