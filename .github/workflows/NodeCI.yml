@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  lint:
+  lint_and_test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -18,3 +18,5 @@ jobs:
       run: npm install
     - name: Lint
       run: npm run lint
+    - name: Test
+      run: npm run test
