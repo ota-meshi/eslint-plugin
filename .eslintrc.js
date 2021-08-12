@@ -10,5 +10,6 @@ module.exports = {
     rules: {
         "node/no-extraneous-require": "off",
         "node/no-unpublished-require": "off",
+        "node-dependencies/no-deprecated": "error",
     },
 }
