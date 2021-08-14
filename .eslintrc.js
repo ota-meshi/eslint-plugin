@@ -6,9 +6,11 @@ module.exports = {
         require.resolve("./lib/configs/+node"),
         require.resolve("./lib/configs/+json"),
         require.resolve("./lib/configs/+prettier"),
+        require.resolve("./lib/configs/+package-json"),
     ],
     rules: {
         "node/no-extraneous-require": "off",
         "node/no-unpublished-require": "off",
+        "node-dependencies/no-deprecated": "error",
     },
 }
