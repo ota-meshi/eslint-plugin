@@ -2,7 +2,7 @@
 
 const path = require("path")
 const assert = require("assert")
-const { CLIEngine } = require("eslint")
+const { ESLint } = require("eslint")
 
 const Module = require("module")
 
@@ -27,17 +27,20 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
         Module._resolveFilename = resolveFilename
     })
 
-    it("should lint without errors", () => {
-        const engine = new CLIEngine({
+    it("should lint without errors", async () => {
+        const engine = new ESLint({
             cwd: TEST_CWD,
             fix: true,
         })
-        const result = engine.executeOnFiles([TEST_CWD])
-        CLIEngine.outputFixes(result)
+        const results = await engine.lintFiles([TEST_CWD])
+        await ESLint.outputFixes(results)
         try {
-            assert.strictEqual(result.errorCount, 0)
+            assert.strictEqual(
+                results.reduce((s, r) => s + r.errorCount, 0),
+                0,
+            )
         } catch (e) {
-            console.log(result.results.flatMap((r) => r.messages))
+            console.log(results.flatMap((r) => r.messages))
             throw e
         }
     })
