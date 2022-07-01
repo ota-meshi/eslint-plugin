@@ -1,10 +1,6 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "json",
-    "jsonc"
-  ],
+  "eslint.validate": ["javascript", "json", "jsonc"],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
+    "source.fixAll.eslint": true
   }
 }
