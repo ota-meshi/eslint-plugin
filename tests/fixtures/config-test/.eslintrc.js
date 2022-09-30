@@ -10,6 +10,7 @@ module.exports = {
     "plugin:@ota-meshi/+yaml",
     "plugin:@ota-meshi/+toml",
     "plugin:@ota-meshi/+md",
+    "plugin:@ota-meshi/+svelte",
     "plugin:@ota-meshi/+prettier",
   ],
 };
