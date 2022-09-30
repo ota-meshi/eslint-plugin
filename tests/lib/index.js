@@ -35,9 +35,11 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
     const results = await engine.lintFiles([TEST_CWD]);
     await ESLint.outputFixes(results);
     try {
-      assert.strictEqual(
-        results.reduce((s, r) => s + r.errorCount, 0),
-        0
+      assert.deepStrictEqual(
+        results.flatMap((r) =>
+          r.messages.map((m) => ({ ...m, filePath: r.filePath }))
+        ),
+        []
       );
     } catch (e) {
       console.log(results.flatMap((r) => r.messages));
