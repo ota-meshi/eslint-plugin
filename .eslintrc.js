@@ -9,8 +9,8 @@ module.exports = {
     require.resolve("./lib/configs/+package-json"),
   ],
   rules: {
-    "node/no-extraneous-require": "off",
-    "node/no-unpublished-require": "off",
+    "n/no-extraneous-require": "off",
+    "n/no-unpublished-require": "off",
     "node-dependencies/no-deprecated": "error",
   },
 };
