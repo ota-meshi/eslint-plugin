@@ -37,9 +37,9 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
     try {
       assert.deepStrictEqual(
         results.flatMap((r) =>
-          r.messages.map((m) => ({ ...m, filePath: r.filePath }))
+          r.messages.map((m) => ({ ...m, filePath: r.filePath })),
         ),
-        []
+        [],
       );
     } catch (e) {
       console.log(results.flatMap((r) => r.messages));
