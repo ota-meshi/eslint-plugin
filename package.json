@@ -9,7 +9,7 @@
     "JounQin (https://github.com/JounQin)"
   ],
   "license": "MIT",
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "^12.20.0 || ^14.14.0 || >=16"
   },
