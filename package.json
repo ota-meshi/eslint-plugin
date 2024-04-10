@@ -18,8 +18,10 @@
     "lib"
   ],
   "scripts": {
+    "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "pretest": "yarn build",
     "test": "mocha \"tests/lib/**/*.js\" --reporter dot --timeout 60000"
   },
   "peerDependencies": {
@@ -31,6 +33,9 @@
     "semver": "^7.3.4"
   },
   "devDependencies": {
+    "@types/eslint": "^8.56.7",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.0.0",
