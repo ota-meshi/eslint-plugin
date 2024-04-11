@@ -1,5 +1,4 @@
 import type { Linter } from "eslint";
-import { getProject } from "./plugins/ts/index.js";
 
 export const nodeFiles = [`*.js`, `*.mjs`, `*.cjs`].flatMap((p) => [
   p,
@@ -22,13 +21,5 @@ export const nodeExtendRules: Linter.RulesRecord = {
 export const nodeSettings = {
   node: {
     tryExtensions: [".js", ".cjs", ".mjs", ".json", ".ts", ".cts", ".mts"],
-    tsconfigPath: getProject(),
-    typescriptExtensionMap: [
-      ["", ".js"],
-      [".ts", ".js"],
-      [".cts", ".cjs"],
-      [".mts", ".mjs"],
-      [".tsx", ".js"],
-    ],
   },
 };

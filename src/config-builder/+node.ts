@@ -9,7 +9,7 @@ import {
 
 export function buildNode() {
   return requireOf(
-    ["eslint-plugin-n@16.1.0"],
+    ["eslint-plugin-n@17.2.0"],
     (): Linter.FlatConfig[] => {
       const nodePlugin = require("eslint-plugin-n");
       return [

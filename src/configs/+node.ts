@@ -8,7 +8,7 @@ import { requireOf } from "../utils/module.js";
 import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
-  ["eslint-plugin-n"],
+  ["eslint-plugin-n@17.2.0"],
   (): Linter.Config => ({
     extends: ["plugin:n/recommended"],
     overrides: [
