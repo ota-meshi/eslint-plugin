@@ -1,10 +1,10 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
+import { requireOf } from "../utils/module.js";
 import {
   eslintPluginExtendRules,
   eslintPluginFiles,
-} from "../config-helpers/+eslint-plugin";
-import { buildFallbackForLegacy } from "./fallback";
+} from "../config-helpers/+eslint-plugin.js";
+import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-eslint-plugin"],

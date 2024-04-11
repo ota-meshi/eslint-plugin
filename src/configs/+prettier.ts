@@ -1,11 +1,12 @@
-"use strict";
+import type { Linter } from "eslint";
+import {
+  prettierExtendRules,
+  prettierOffFiles,
+} from "../config-helpers/+prettier.js";
+import { requireOf } from "../utils/module.js";
+import { buildFallbackForLegacy } from "./fallback.js";
 
-import { Linter } from "eslint";
-import { prettierOffFiles, prettierRules } from "../config-helpers/+prettier";
-import { requireOf } from "../utils/module";
-import { buildFallbackForLegacy } from "./fallback";
-
-function getConfigArrayIfHasConfig(config:string) {
+function getConfigArrayIfHasConfig(config: string) {
   try {
     const configPath = require.resolve(`eslint-config-${config}`);
     require(configPath);
@@ -26,7 +27,7 @@ export = requireOf(
       ...getConfigArrayIfHasConfig("prettier/vue"),
     ],
     rules: {
-      ...prettierRules,
+      ...prettierExtendRules,
     },
     overrides: [
       {

@@ -1,7 +1,11 @@
 import type { Linter } from "eslint";
-import { nodeExtendRules, nodeFiles } from "../config-helpers/+node";
-import { requireOf } from "../utils/module";
-import { buildFallbackForLegacy } from "./fallback";
+import {
+  nodeExtendRules,
+  nodeFiles,
+  nodeSettings,
+} from "../config-helpers/+node.js";
+import { requireOf } from "../utils/module.js";
+import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-n"],
@@ -15,6 +19,9 @@ export = requireOf(
         },
       },
     ],
+    settings: {
+      ...nodeSettings,
+    },
   }),
   (missingList) => {
     return {

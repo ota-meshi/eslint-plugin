@@ -19,6 +19,7 @@ module.exports = {
     "require-jsdoc": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": "off",
+    complexity: "off",
   },
   overrides: [
     {

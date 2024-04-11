@@ -1,7 +1,7 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { jsonExtendRules, jsonFiles } from "../config-helpers/+json";
-import { buildFallbackForLegacy } from "./fallback";
+import { requireOf } from "../utils/module.js";
+import { jsonExtendRules, jsonFiles } from "../config-helpers/+json.js";
+import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-jsonc"],

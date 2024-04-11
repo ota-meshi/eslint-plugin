@@ -11,7 +11,7 @@ export function buildFallback(
     {
       plugins: {
         get "@ota-meshi"() {
-          return require("@ota-meshi/eslint-plugin");
+          return require("./index.js");
         },
       },
       rules: {

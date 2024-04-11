@@ -1,9 +1,10 @@
-"use strict";
-
-import { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { prettierOffFiles, prettierRules } from "../config-helpers/+prettier";
-import { buildFallback } from "./fallback";
+import type { Linter } from "eslint";
+import { requireOf } from "../utils/module.js";
+import {
+  prettierExtendRules,
+  prettierOffFiles,
+} from "../config-helpers/+prettier.js";
+import { buildFallback } from "./fallback.js";
 
 export function buildPrettier() {
   return requireOf(
@@ -14,7 +15,7 @@ export function buildPrettier() {
         ...eslintConfigPrettier,
         {
           rules: {
-            ...prettierRules,
+            ...prettierExtendRules,
           },
         },
         {

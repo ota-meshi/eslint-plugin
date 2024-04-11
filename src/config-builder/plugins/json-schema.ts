@@ -1,8 +1,8 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../../utils/module";
-import { jsonSchemaExtendRules } from "../../config-helpers/plugins/json-schema";
-import { jsonFiles } from "../../config-helpers/+json";
-import { buildFallback } from "../fallback";
+import { requireOf } from "../../utils/module.js";
+import { jsonSchemaExtendRules } from "../../config-helpers/plugins/json-schema.js";
+import { buildFallback } from "../fallback.js";
+import { anyParser } from "../../parsers/any-parser.js";
 
 export function buildJsonSchema(files: string[]) {
   return requireOf(
@@ -25,9 +25,9 @@ export function buildJsonSchema(files: string[]) {
     },
     (missingList) => [
       {
-        files: jsonFiles,
+        files,
         languageOptions: {
-          parser: require("../../parsers/any-parser"),
+          parser: anyParser,
         },
         ...buildFallback(missingList),
       },

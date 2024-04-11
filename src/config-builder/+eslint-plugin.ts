@@ -1,11 +1,11 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
+import { requireOf } from "../utils/module.js";
 import {
   eslintPluginExtendRules,
   eslintPluginFiles,
-} from "../config-helpers/+eslint-plugin";
-import { buildFallback } from "./fallback";
-import { buildNode } from "./+node";
+} from "../config-helpers/+eslint-plugin.js";
+import { buildFallback } from "./fallback.js";
+import { buildNode } from "./+node.js";
 
 export function buildESLintPlugin() {
   return requireOf(

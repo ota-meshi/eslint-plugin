@@ -1,9 +1,9 @@
-import { Linter } from "eslint";
-import { extInMdFiles } from "./+md";
+import type { Linter } from "eslint";
+import { extInMdFiles } from "./+md.js";
 
 export const prettierOffFiles = extInMdFiles;
 
-export const prettierRules: Linter.RulesRecord = {
+export const prettierExtendRules: Linter.RulesRecord = {
   "prettier/prettier": "error",
 
   "jsonc/array-bracket-newline": "off",
@@ -44,4 +44,4 @@ export const prettierRules: Linter.RulesRecord = {
   "svelte/no-trailing-spaces": "off",
   "svelte/shorthand-attribute": "off",
   "svelte/shorthand-directive": "off",
-}
+};

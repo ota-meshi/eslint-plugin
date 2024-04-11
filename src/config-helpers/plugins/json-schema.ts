@@ -1,6 +1,6 @@
 import type { Linter } from "eslint";
 
-export const jsonSchemaExtendRules = {
+export const jsonSchemaExtendRules: Linter.RulesRecord = {
   "json-schema-validator/no-invalid": [
     "error",
     {
@@ -27,4 +27,4 @@ export const jsonSchemaExtendRules = {
       useSchemastoreCatalog: true,
     },
   ],
-} as Linter.RulesRecord;
+};

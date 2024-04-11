@@ -3,7 +3,7 @@ import {
   recommendedTestFiles,
   recommendedTestGlobals,
   recommendedTestRules,
-} from "../config-helpers/recommended";
+} from "../config-helpers/recommended.js";
 
 export = {
   extends: [

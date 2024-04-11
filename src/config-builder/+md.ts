@@ -1,8 +1,8 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md";
-import { buildFallback } from "./fallback";
-import * as anyParser from "../parsers/any-parser";
+import { requireOf } from "../utils/module.js";
+import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md.js";
+import { buildFallback } from "./fallback.js";
+import { anyParser } from "../parsers/any-parser.js";
 
 export function buildMd() {
   return requireOf(

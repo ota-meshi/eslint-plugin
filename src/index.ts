@@ -1,3 +1,9 @@
+import type { BuildConfigOptions } from "./config-builder/index.js";
+import { buildConfig } from "./config-builder/index.js";
+
+export function config(options?: BuildConfigOptions) {
+  return buildConfig(options || {});
+}
 export const configs = {
   recommended: require("./configs/recommended"),
   "+eslint-plugin": require("./configs/+eslint-plugin"),

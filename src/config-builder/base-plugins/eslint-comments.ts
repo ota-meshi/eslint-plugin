@@ -1,7 +1,7 @@
 import type { Linter } from "eslint";
-import { eslintCommentsExtendRules } from "../../config-helpers/base-plugins/eslint-comments";
-import { requireOf } from "../../utils/module";
-import { buildFallback } from "../fallback";
+import { eslintCommentsExtendRules } from "../../config-helpers/base-plugins/eslint-comments.js";
+import { requireOf } from "../../utils/module.js";
+import { buildFallback } from "../fallback.js";
 
 export function buildESLintComments() {
   return requireOf(

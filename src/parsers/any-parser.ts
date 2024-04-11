@@ -27,3 +27,5 @@ export function parseForESLint(
     },
   };
 }
+
+export const anyParser = { parseForESLint };

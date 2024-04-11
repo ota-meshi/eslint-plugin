@@ -1,7 +1,7 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../../utils/module";
-import { buildFallback } from "../fallback";
-import { regexpExtendRules } from "../../config-helpers/base-plugins/regexp";
+import { requireOf } from "../../utils/module.js";
+import { buildFallback } from "../fallback.js";
+import { regexpExtendRules } from "../../config-helpers/base-plugins/regexp.js";
 
 export function buildRegexp() {
   return requireOf(

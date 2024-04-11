@@ -1,8 +1,8 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
+import { requireOf } from "../utils/module.js";
 import semver from "semver";
-import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md";
-import { buildFallbackForLegacy } from "./fallback";
+import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md.js";
+import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-markdown"],

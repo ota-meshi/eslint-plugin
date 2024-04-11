@@ -1,7 +1,11 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { buildFallback } from "./fallback";
-import { nodeExtendRules, nodeFiles } from "../config-helpers/+node";
+import { requireOf } from "../utils/module.js";
+import { buildFallback } from "./fallback.js";
+import {
+  nodeExtendRules,
+  nodeFiles,
+  nodeSettings,
+} from "../config-helpers/+node.js";
 
 export function buildNode() {
   return requireOf(
@@ -14,6 +18,11 @@ export function buildNode() {
           files: nodeFiles,
           rules: {
             ...nodeExtendRules,
+          },
+        },
+        {
+          settings: {
+            ...nodeSettings,
           },
         },
       ];

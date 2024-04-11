@@ -1,9 +1,9 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { buildJson } from "./+json";
-import { packageJsonFiles } from "../config-helpers/+package-json";
-import * as anyParser from "../parsers/any-parser";
-import { buildFallback } from "./fallback";
+import { requireOf } from "../utils/module.js";
+import { buildJson } from "./+json.js";
+import { packageJsonFiles } from "../config-helpers/+package-json.js";
+import { buildFallback } from "./fallback.js";
+import { anyParser } from "../parsers/any-parser.js";
 
 export function buildPackageJson() {
   return requireOf(

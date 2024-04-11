@@ -1,9 +1,9 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module";
-import { jsonExtendRules, jsonFiles } from "../config-helpers/+json";
-import { buildJsonSchema } from "./plugins/json-schema";
-import { buildFallback } from "./fallback";
-import * as anyParser from "../parsers/any-parser";
+import { requireOf } from "../utils/module.js";
+import { jsonExtendRules, jsonFiles } from "../config-helpers/+json.js";
+import { buildJsonSchema } from "./plugins/json-schema.js";
+import { buildFallback } from "./fallback.js";
+import { anyParser } from "../parsers/any-parser.js";
 
 export function buildJson() {
   return requireOf(

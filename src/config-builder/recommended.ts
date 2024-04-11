@@ -2,14 +2,14 @@
 
 import js from "@eslint/js";
 import type { Linter } from "eslint";
-import { buildESLintComments } from "./base-plugins/eslint-comments";
-import { buildRegexp } from "./base-plugins/regexp";
+import { buildESLintComments } from "./base-plugins/eslint-comments.js";
+import { buildRegexp } from "./base-plugins/regexp.js";
 import {
   recommendedRules,
   recommendedTestFiles,
   recommendedTestGlobals,
   recommendedTestRules,
-} from "../config-helpers/recommended";
+} from "../config-helpers/recommended.js";
 
 /**
  * Build recommended config
