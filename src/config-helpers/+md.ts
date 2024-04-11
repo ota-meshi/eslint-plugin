@@ -9,6 +9,20 @@ export const jsInMdFiles = mdFiles.flatMap((p) => [
   `${p}/*.cts`,
   `${p}/*.mts`,
 ]);
+export const extInMdFiles = [
+  ...jsInMdFiles,
+  ...mdFiles.flatMap((p) => [
+  `${p}/*.json`,
+  `${p}/*.json5`,
+  `${p}/*.jsonc`,
+  `${p}/*.toml`,
+  `${p}/*.yml`,
+  `${p}/*.yaml`,
+  `${p}/*.vue`,
+  `${p}/*.svelte`,
+  `${p}/*.astro`,
+])
+];
 
 export const jsInMdRules = {
   // The Markdown parser automatically trims trailing

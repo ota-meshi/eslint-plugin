@@ -5,6 +5,7 @@ import { buildNode } from "./+node";
 import { buildJson } from "./+json";
 import { buildMd } from "./+md";
 import { buildPackageJson } from "./+package-json";
+import { buildPrettier } from "./+prettier";
 
 export type BuildConfigOptions = {
   eslintPlugin?: boolean;
@@ -12,6 +13,7 @@ export type BuildConfigOptions = {
   node?: boolean;
   md?: boolean;
   packageJson?: boolean;
+  prettier?:boolean
 };
 
 /**
@@ -25,5 +27,6 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
     ...(options?.json ? buildJson() : []),
     ...(options?.packageJson ? buildPackageJson() : []),
     ...(options?.md ? buildMd() : []),
+    ...(options?.prettier ? buildPrettier() : []),
   ];
 }
