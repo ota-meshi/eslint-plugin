@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { buildFallback } from "./fallback.js";
 import {
   nodeExtendRules,
@@ -11,7 +11,7 @@ export function buildNode() {
   return requireOf(
     ["eslint-plugin-n@17.2.0"],
     (): Linter.FlatConfig[] => {
-      const nodePlugin = require("eslint-plugin-n");
+      const nodePlugin = requireFromCwd("eslint-plugin-n");
       return [
         ...nodePlugin.configs["flat/mixed-esm-and-cjs"],
         {

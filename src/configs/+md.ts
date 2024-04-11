@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import semver from "semver";
 import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md.js";
 import { buildFallbackForLegacy } from "./fallback.js";
@@ -7,7 +7,9 @@ import { buildFallbackForLegacy } from "./fallback.js";
 export = requireOf(
   ["eslint-plugin-markdown"],
   (): Linter.Config => {
-    const version = require("eslint-plugin-markdown/package.json").version;
+    const version = requireFromCwd(
+      "eslint-plugin-markdown/package.json",
+    ).version;
     return {
       extends: [
         semver.satisfies(version, ">=4.0.0")

@@ -1,6 +1,5 @@
-import { createRequire } from "module";
-import path from "path";
 import { tsExtendRules } from "./base-config.js";
+import { requireFromCwd } from "../../../utils/module.js";
 export { tsExtendRules };
 export const tsParserOptions = {
   project: getProject(),
@@ -10,9 +9,7 @@ export const tsParserOptions = {
 export function getProject() {
   let project = undefined;
   try {
-    project = createRequire(
-      path.join(process.cwd(), "__placeholder__.js"),
-    ).resolve("./tsconfig.json");
+    project = requireFromCwd.resolve("./tsconfig.json");
   } catch {
     // ignore
   }

@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { astroFiles } from "../config-helpers/+astro.js";
 import { buildTS } from "./plugins/ts/index.js";
 import { tsExtendRules } from "../config-helpers/plugins/ts/index.js";
@@ -17,7 +17,7 @@ export function buildAstroTs() {
           files: astroFiles,
           languageOptions: {
             parserOptions: {
-              parser: require("@typescript-eslint/parser"),
+              parser: requireFromCwd("@typescript-eslint/parser"),
             },
           },
           rules: {

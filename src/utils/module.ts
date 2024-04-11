@@ -1,7 +1,12 @@
 import type { Linter } from "eslint";
 import semver from "semver";
 import { findRootDir } from "./find-root-dir.js";
+import { createRequire } from "module";
+import path from "path";
 
+export const requireFromCwd = createRequire(
+  path.join(process.cwd(), "__placeholder__.js"),
+);
 /**
  * Checks if exists module
  */
@@ -17,14 +22,14 @@ export function has(name: string): boolean {
   }
 
   try {
-    modulePath = require.resolve(moduleName);
+    modulePath = requireFromCwd.resolve(moduleName);
   } catch (_e) {
     return false;
   }
   if (version) {
     const moduleRootPath = findRootDir(modulePath);
     try {
-      const pkg = require(`${moduleRootPath}/package.json`);
+      const pkg = requireFromCwd(`${moduleRootPath}/package.json`);
       return semver.lte(version, pkg.version);
     } catch (_e) {
       return false;

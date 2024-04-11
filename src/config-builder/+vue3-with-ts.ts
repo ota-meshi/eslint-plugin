@@ -1,6 +1,6 @@
 import type { Linter } from "eslint";
 import { vueFiles } from "../config-helpers/+vue.js";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { buildTS } from "./plugins/ts/index.js";
 import { tsExtendRules } from "../config-helpers/plugins/ts/base-config.js";
 import { anyParser } from "../parsers/any-parser.js";
@@ -17,7 +17,7 @@ export function buildVue3Ts() {
           files: vueFiles,
           languageOptions: {
             parserOptions: {
-              parser: require("@typescript-eslint/parser"),
+              parser: requireFromCwd("@typescript-eslint/parser"),
             },
           },
           rules: {

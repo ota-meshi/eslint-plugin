@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { jsonExtendRules, jsonFiles } from "../config-helpers/+json.js";
 import { buildJsonSchema } from "./plugins/json-schema.js";
 import { buildFallback } from "./fallback.js";
@@ -9,7 +9,7 @@ export function buildJson() {
   return requireOf(
     ["eslint-plugin-jsonc"],
     (): Linter.FlatConfig[] => {
-      const eslintPluginJsonc = require("eslint-plugin-jsonc");
+      const eslintPluginJsonc = requireFromCwd("eslint-plugin-jsonc");
       return [
         ...eslintPluginJsonc.configs["flat/recommended-with-jsonc"],
         {

@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../../../utils/module.js";
+import { requireFromCwd, requireOf } from "../../../utils/module.js";
 import {
   tsExtendRules,
   tsParserOptions,
@@ -16,7 +16,7 @@ export function buildTS(files: string[]) {
       "@typescript-eslint/parser",
     ],
     (): Linter.FlatConfig[] => {
-      const tseslint = require("typescript-eslint");
+      const tseslint = requireFromCwd("typescript-eslint");
       return [
         ...tseslint.config({
           files,

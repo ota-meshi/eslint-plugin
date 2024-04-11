@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { svelteFiles } from "../config-helpers/+svelte.js";
 import { buildTS } from "./plugins/ts/index.js";
 import { tsExtendRules } from "../config-helpers/plugins/ts/index.js";
@@ -21,7 +21,7 @@ export function buildSvelteTs() {
           files: svelteFiles,
           languageOptions: {
             parserOptions: {
-              parser: require("@typescript-eslint/parser"),
+              parser: requireFromCwd("@typescript-eslint/parser"),
             },
           },
           rules: {

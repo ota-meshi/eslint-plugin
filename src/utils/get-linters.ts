@@ -1,4 +1,5 @@
-const path = require("path");
+import path from "path";
+
 const needle = `${path.sep}node_modules${path.sep}eslint${path.sep}`;
 
 export function getLinters() {

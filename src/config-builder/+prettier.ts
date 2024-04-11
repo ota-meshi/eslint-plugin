@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import {
   prettierExtendRules,
   prettierOffFiles,
@@ -10,8 +10,8 @@ export function buildPrettier() {
   return requireOf(
     ["eslint-plugin-prettier", "eslint-config-prettier", "prettier"],
     (): Linter.FlatConfig[] => {
-      const eslintConfigPrettier = require("eslint-config-prettier");
-      const prettier = require("eslint-plugin-prettier");
+      const eslintConfigPrettier = requireFromCwd("eslint-config-prettier");
+      const prettier = requireFromCwd("eslint-plugin-prettier");
       return [
         eslintConfigPrettier,
         {

@@ -1,6 +1,6 @@
 import type { Linter } from "eslint";
 import { yamlExtendRules, yamlFiles } from "../config-helpers/+yaml.js";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { buildJsonSchema } from "./plugins/json-schema.js";
 import { anyParser } from "../parsers/any-parser.js";
 import { buildFallback } from "./fallback.js";
@@ -9,7 +9,7 @@ export function buildYaml() {
   return requireOf(
     ["eslint-plugin-yml"],
     (): Linter.FlatConfig[] => {
-      const eslintPluginYml = require("eslint-plugin-yml");
+      const eslintPluginYml = requireFromCwd("eslint-plugin-yml");
       return [
         ...eslintPluginYml.configs["flat/standard"],
         ...buildJsonSchema(yamlFiles),

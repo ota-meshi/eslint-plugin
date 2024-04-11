@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md.js";
 import { buildFallback } from "./fallback.js";
 import { anyParser } from "../parsers/any-parser.js";
@@ -8,7 +8,7 @@ export function buildMd() {
   return requireOf(
     ["eslint-plugin-markdown@4.0.0"],
     (): Linter.FlatConfig[] => {
-      const markdown = require("eslint-plugin-markdown");
+      const markdown = requireFromCwd("eslint-plugin-markdown");
 
       return [
         {

@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-import { requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf } from "../utils/module.js";
 import { buildJson } from "./+json.js";
 import { packageJsonFiles } from "../config-helpers/+package-json.js";
 import { buildFallback } from "./fallback.js";
@@ -9,7 +9,9 @@ export function buildPackageJson() {
   return requireOf(
     ["eslint-plugin-node-dependencies@0.12.0"],
     (): Linter.FlatConfig[] => {
-      const nodeDependenciesPlugin = require("eslint-plugin-node-dependencies");
+      const nodeDependenciesPlugin = requireFromCwd(
+        "eslint-plugin-node-dependencies",
+      );
       return [
         ...buildJson().map((config) => ({
           ...config,
