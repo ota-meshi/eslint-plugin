@@ -27,6 +27,7 @@ export const rules = {
 };
 
 export default {
+  config,
   configs,
   rules,
 };

@@ -1,5 +1,5 @@
 <script>
-  const readonly = true;
+  let readonly = true;
 </script>
 
 <input {readonly} />;

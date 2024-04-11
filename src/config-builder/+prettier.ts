@@ -11,9 +11,11 @@ export function buildPrettier() {
     ["eslint-plugin-prettier", "eslint-config-prettier", "prettier"],
     (): Linter.FlatConfig[] => {
       const eslintConfigPrettier = require("eslint-config-prettier");
+      const prettier = require("eslint-plugin-prettier");
       return [
-        ...eslintConfigPrettier,
+        eslintConfigPrettier,
         {
+          plugins: { prettier },
           rules: {
             ...prettierExtendRules,
           },

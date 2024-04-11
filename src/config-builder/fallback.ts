@@ -11,7 +11,7 @@ export function buildFallback(
     {
       plugins: {
         get "@ota-meshi"() {
-          return require("./index.js");
+          return require("../index.js");
         },
       },
       rules: {

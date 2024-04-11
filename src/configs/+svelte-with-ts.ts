@@ -20,7 +20,7 @@ export = requireOf(
         parser: require.resolve("svelte-eslint-parser"),
         parserOptions: {
           ...base.parserOptions,
-          parser: { ts: require.resolve("@typescript-eslint/parser") },
+          parser: require.resolve("@typescript-eslint/parser"),
         },
       },
     ],

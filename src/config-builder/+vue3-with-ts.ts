@@ -17,7 +17,7 @@ export function buildVue3Ts() {
           files: vueFiles,
           languageOptions: {
             parserOptions: {
-              parser: { ts: require("@typescript-eslint/parser") },
+              parser: require("@typescript-eslint/parser"),
             },
           },
           rules: {

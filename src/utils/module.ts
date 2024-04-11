@@ -8,7 +8,7 @@ import { findRootDir } from "./find-root-dir.js";
 export function has(name: string): boolean {
   const parts = name.split(/@/u);
   let moduleName: string, version: string, modulePath: string;
-  if (parts.length > 1 && parts[0]) {
+  if (parts.length > 1 && parts.slice(0, -1).join("@")) {
     moduleName = parts.slice(0, -1).join("@");
     version = parts[parts.length - 1];
   } else {
