@@ -3,12 +3,12 @@ import {
   prettierExtendRules,
   prettierOffFiles,
 } from "../config-helpers/+prettier.js";
-import { requireFromCwd, requireOf } from "../utils/module.js";
+import { requireFromCwd, requireOf, resolveFromCwd } from "../utils/module.js";
 import { buildFallbackForLegacy } from "./fallback.js";
 
 function getConfigArrayIfHasConfig(config: string) {
   try {
-    const configPath = requireFromCwd.resolve(`eslint-config-${config}`);
+    const configPath = resolveFromCwd(`eslint-config-${config}`);
     requireFromCwd(configPath);
   } catch (_e) {
     return [];

@@ -1,10 +1,8 @@
 import type { Rule } from "eslint";
-import { findRootDir } from "../utils/find-root-dir.js";
-import { spawnSync } from "child_process";
 import { getLinters } from "../utils/get-linters.js";
+import { tryInstall } from "../utils/module.js";
 
 let shouldFix = false;
-const fixedModules = new Set();
 patch();
 
 export const meta = {
@@ -25,21 +23,12 @@ export function create(context: Rule.RuleContext) {
   const modules = context.options[0];
   for (const moduleName of modules) {
     let consoleOutput = "";
-    if (shouldFix && !fixedModules.has(moduleName)) {
-      fixedModules.add(moduleName);
-      const cwd = findRootDir(context.getFilename());
-      if (cwd) {
-        const result = spawnSync("npm", ["install", "-D", moduleName], {
-          cwd,
-          windowsHide: true,
-          maxBuffer: Infinity,
-        });
-
-        if (result.error) {
-          throw result.error;
-        }
-        consoleOutput = `\n${result.output}`;
-      }
+    if (shouldFix) {
+      const result = tryInstall(
+        moduleName,
+        context.filename || context.getFilename(),
+      );
+      consoleOutput = result ? `\n${result}` : "";
     }
     context.report({
       loc: { line: 1, column: 0 },

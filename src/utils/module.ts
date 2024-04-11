@@ -3,26 +3,46 @@ import semver from "semver";
 import { findRootDir } from "./find-root-dir.js";
 import { createRequire } from "module";
 import path from "path";
+import { spawnSync } from "child_process";
 
-export const requireFromCwd = createRequire(
-  path.join(process.cwd(), "__placeholder__.js"),
-);
+let requireFunction: NodeRequire | null = null;
+
+export function requireFromCwd(modulePath: string) {
+  if (!requireFunction) {
+    requireFunction = createRequire(
+      path.join(process.cwd(), "__placeholder__.js"),
+    );
+  }
+  return requireFunction(modulePath);
+}
+export function resolveFromCwd(modulePath: string) {
+  if (!requireFunction) {
+    requireFunction = createRequire(
+      path.join(process.cwd(), "__placeholder__.js"),
+    );
+  }
+  return requireFunction.resolve(modulePath);
+}
+export function parseModule(name: string) {
+  const parts = name.split(/@/u);
+  if (parts.length > 1 && parts.slice(0, -1).join("@")) {
+    return {
+      moduleName: parts.slice(0, -1).join("@"),
+      version: parts[parts.length - 1],
+    };
+  }
+  return { moduleName: name, version: null };
+}
+
 /**
  * Checks if exists module
  */
 export function has(name: string): boolean {
-  const parts = name.split(/@/u);
-  let moduleName: string, version: string, modulePath: string;
-  if (parts.length > 1 && parts.slice(0, -1).join("@")) {
-    moduleName = parts.slice(0, -1).join("@");
-    version = parts[parts.length - 1];
-  } else {
-    moduleName = name;
-    version = "";
-  }
+  const { moduleName, version } = parseModule(name);
 
+  let modulePath;
   try {
-    modulePath = requireFromCwd.resolve(moduleName);
+    modulePath = resolveFromCwd(moduleName);
   } catch (_e) {
     return false;
   }
@@ -48,10 +68,41 @@ export function requireOf<C extends Linter.FlatConfig[] | Linter.Config>(
 ): C {
   const missingList = names.filter((n) => !has(n));
 
-  if (missingList.length) {
-    // getFallback, files
-    return fallback(missingList);
+  if (!missingList.length) {
+    return getConfig();
+  }
+  return fallback(missingList);
+}
+
+const installedModules = new Set();
+export function tryInstall(
+  moduleName: string,
+  targetFile: string = process.cwd(),
+) {
+  if (installedModules.has(moduleName)) return null;
+  const cwd = findRootDir(targetFile);
+  if (cwd) {
+    installedModules.add(moduleName);
+    const parsed = parseModule(moduleName);
+    const result = spawnSync(
+      "npm",
+      [
+        "install",
+        "-D",
+        parsed.moduleName + (parsed.version ? `@^${parsed.version}` : ""),
+      ],
+      {
+        cwd,
+        windowsHide: true,
+        maxBuffer: Infinity,
+      },
+    );
+
+    if (result.error) {
+      throw result.error;
+    }
+    return `${result.output}`;
   }
 
-  return getConfig();
+  return null;
 }

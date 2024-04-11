@@ -8,7 +8,7 @@ function hasPackageJson(dir: string) {
 }
 
 export function findRootDir(startPath: string) {
-  const startDir = path.dirname(path.resolve(startPath));
+  const startDir = startPath;
   let dir = startDir;
   while (!hasPackageJson(dir)) {
     const nextDir = path.dirname(dir);

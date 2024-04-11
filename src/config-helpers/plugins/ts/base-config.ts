@@ -109,5 +109,8 @@ export const tsExtendRules: Linter.RulesRecord = {
     },
   ],
 
+  // Turn off unnecessary rules
   "n/no-unsupported-features/es-syntax": "off",
+  "n/no-missing-import": "off",
+  "n/no-extraneous-import": "off",
 };
