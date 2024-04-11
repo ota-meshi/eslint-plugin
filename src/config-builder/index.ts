@@ -20,7 +20,6 @@ import { buildAstroTs } from "./+astro-with-ts.js";
 
 export type BuildConfigOptions = {
   node?: boolean;
-  prettier?: boolean;
   packageJson?: boolean;
 
   // kind of package
@@ -36,6 +35,9 @@ export type BuildConfigOptions = {
   yaml?: boolean;
   toml?: boolean;
   md?: boolean;
+
+  // format
+  prettier?: boolean;
 };
 
 /**
@@ -45,11 +47,12 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
   return [
     ...buildRecommended(),
     ...(options?.node ? buildNode() : []),
-    ...(options?.prettier ? buildPrettier() : []),
     ...(options?.packageJson ? buildPackageJson() : []),
 
+    // kind of package
     ...(options?.eslintPlugin ? buildESLintPlugin() : []),
 
+    // languages
     ...(options?.vue3 ? buildVue3() : []),
     ...(options?.vue3 && options?.ts ? buildVue3Ts() : []),
     ...(options?.vue2 ? buildVue2() : []),
@@ -64,5 +67,8 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
     ...(options?.yaml ? buildYaml() : []),
     ...(options?.toml ? buildToml() : []),
     ...(options?.md ? buildMd() : []),
+
+    // format
+    ...(options?.prettier ? buildPrettier() : []),
   ];
 }

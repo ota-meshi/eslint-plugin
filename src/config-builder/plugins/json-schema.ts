@@ -11,7 +11,7 @@ export function buildJsonSchema(files: string[]) {
       const eslintPluginJsonSchemaValidator = require("eslint-plugin-json-schema-validator");
       return [
         ...eslintPluginJsonSchemaValidator.configs["flat/recommended"].map(
-          (config: Linter.FlatConfig) => ({ ...config, files }),
+          (config: Linter.FlatConfig) => ({ files, ...config }),
         ),
         {
           files,
