@@ -1,7 +1,7 @@
 const path = require("path");
 const needle = `${path.sep}node_modules${path.sep}eslint${path.sep}`;
 
-export function getLinter() {
+export function getLinters() {
   const eslintPaths = new Set<string>(
     Object.keys(require.cache)
       .filter((id) => id.includes(needle))

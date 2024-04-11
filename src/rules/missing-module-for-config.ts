@@ -1,8 +1,7 @@
 import type { Rule } from "eslint";
-
-const { spawnSync } = require("child_process");
-const getLinters = require("../utils/get-linters");
-const findRootDir = require("../utils/find-root-dir");
+import { findRootDir } from "../utils/find-root-dir.js";
+import { spawnSync } from "child_process";
+import { getLinters } from "../utils/get-linters.js";
 
 let shouldFix = false;
 const fixedModules = new Set();
