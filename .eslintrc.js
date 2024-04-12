@@ -16,7 +16,7 @@ module.exports = {
     "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "require-jsdoc": "off",
+    "jsdoc/require-jsdoc": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": "off",
     complexity: "off",

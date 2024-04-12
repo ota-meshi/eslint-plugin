@@ -10,6 +10,7 @@ export = {
     "eslint:recommended",
     require.resolve("./base-plugins/eslint-comments"),
     require.resolve("./base-plugins/regexp"),
+    require.resolve("./base-plugins/jsdoc"),
   ],
   parserOptions: {
     sourceType: "module",

@@ -10,6 +10,7 @@ import {
   recommendedTestGlobals,
   recommendedTestRules,
 } from "../config-helpers/recommended.js";
+import { buildJsdoc } from "./base-plugins/jsdoc.js";
 
 /**
  * Build recommended config
@@ -19,6 +20,7 @@ export function buildRecommended(): Linter.FlatConfig[] {
     js.configs.recommended,
     ...buildESLintComments(),
     ...buildRegexp(),
+    ...buildJsdoc(),
     {
       rules: {
         ...recommendedRules,

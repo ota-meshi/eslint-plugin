@@ -26,6 +26,7 @@ export function buildMd() {
             ...jsInMdRules,
           },
           languageOptions: {
+            sourceType: "module",
             parserOptions: {
               project: null,
             },
