@@ -22,7 +22,6 @@ export const recommendedRules = {
   "no-useless-concat": "error",
   "no-new-object": "error",
   "no-tabs": "error",
-  "require-jsdoc": "error",
   "prefer-template": "error",
   "object-shorthand": "error",
 
@@ -226,7 +225,7 @@ export const recommendedTestFiles = [
   "tests/**/*.cts",
 ];
 export const recommendedTestRules = {
-  "require-jsdoc": "off",
+  "jsdoc/require-jsdoc": "off",
   "no-console": "off",
 } as Linter.RulesRecord;
 

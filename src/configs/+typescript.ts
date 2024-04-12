@@ -7,6 +7,7 @@ import {
 import { requireOf } from "../utils/module.js";
 import * as base from "./ts/base-config.js";
 import { buildFallbackForLegacy } from "./fallback.js";
+import { extInMdFiles } from "../config-helpers/+md.js";
 
 export = requireOf(
   [
@@ -26,6 +27,10 @@ export = requireOf(
         rules: {
           ...tsTestExtendRules,
         },
+      },
+      {
+        files: extInMdFiles,
+        extends: ["plugin:@typescript-eslint/disable-type-checked"],
       },
     ],
   }),

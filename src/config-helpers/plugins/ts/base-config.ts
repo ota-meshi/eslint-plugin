@@ -108,6 +108,8 @@ export const tsExtendRules: Linter.RulesRecord = {
       varsIgnorePattern: "^_(?:[^_].*)?$",
     },
   ],
+  "no-shadow": "off",
+  "@typescript-eslint/no-shadow": "error",
 
   // Turn off unnecessary rules
   "n/no-unsupported-features/es-syntax": "off",
