@@ -16,10 +16,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install Packages
         run: yarn
-      - name: lint
-        run: yarn lint
-      - name: build
+      - name: Build
         run: yarn build
+      - name: Lint
+        run: yarn lint
       - name: check can npm-publish
         run: npx can-npm-publish
       - name: release
