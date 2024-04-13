@@ -26,10 +26,10 @@ export type BuildConfigOptions = {
   eslintPlugin?: boolean;
 
   // languages
-  vue3?: boolean;
-  vue2?: boolean;
-  svelte?: boolean;
-  astro?: boolean;
+  vue3?: boolean | { withTs?: boolean };
+  vue2?: boolean | { withTs?: boolean };
+  svelte?: boolean | { withTs?: boolean };
+  astro?: boolean | { withTs?: boolean };
   ts?: boolean;
   json?: boolean;
   yaml?: boolean;
@@ -44,31 +44,45 @@ export type BuildConfigOptions = {
  * Build config
  */
 export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
-  return [
+  const configs: Linter.FlatConfig[] = [
     ...buildRecommended(),
     ...(options?.node ? buildNode() : []),
     ...(options?.packageJson ? buildPackageJson() : []),
 
-    // kind of package
+    // Kind of package
     ...(options?.eslintPlugin ? buildESLintPlugin() : []),
+  ];
 
-    // languages
-    ...(options?.vue3 ? buildVue3() : []),
-    ...(options?.vue3 && options?.ts ? buildVue3Ts() : []),
-    ...(options?.vue2 ? buildVue2() : []),
-    ...(options?.vue2 && options?.ts ? buildVue2Ts() : []),
-    ...(options?.svelte ? buildSvelte() : []),
-    ...(options?.svelte && options?.ts ? buildSvelteTs() : []),
-    ...(options?.astro ? buildAstro() : []),
-    ...(options?.astro && options?.ts ? buildAstroTs() : []),
+  // Frameworks
+  applyFw(options.vue3, buildVue3, buildVue3Ts);
+  applyFw(options.vue2, buildVue2, buildVue2Ts);
+  applyFw(options.svelte, buildSvelte, buildSvelteTs);
+  applyFw(options.astro, buildAstro, buildAstroTs);
 
+  configs.push(
+    // Languages
     ...(options?.ts ? buildTs() : []),
     ...(options?.json ? buildJson() : []),
     ...(options?.yaml ? buildYaml() : []),
     ...(options?.toml ? buildToml() : []),
     ...(options?.md ? buildMd() : []),
 
-    // format
+    // Format
     ...(options?.prettier ? buildPrettier() : []),
-  ];
+  );
+
+  return configs;
+
+  function applyFw(
+    option: undefined | boolean | { withTs?: boolean },
+    builder: () => Linter.FlatConfig[],
+    tsBuilder: () => Linter.FlatConfig[],
+  ) {
+    configs.push(...builder());
+    const ts =
+      (typeof option === "object" ? option.withTs : null) ?? options?.ts;
+    if (ts) {
+      configs.push(...tsBuilder());
+    }
+  }
 }

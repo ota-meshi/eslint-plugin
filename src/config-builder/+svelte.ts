@@ -1,5 +1,5 @@
 import { svelteExtendRules, svelteFiles } from "../config-helpers/+svelte.js";
-import { requireFromCwd, requireOf } from "../utils/module.js";
+import { has, requireFromCwd, requireOf } from "../utils/module.js";
 import { buildFallback } from "./fallback.js";
 import { anyParser } from "../parsers/any-parser.js";
 import type { Linter } from "eslint";
@@ -16,17 +16,25 @@ export function buildSvelte() {
           rules: {
             ...svelteExtendRules,
           },
+          ...(has("@typescript-eslint/parser")
+            ? {
+                languageOptions: {
+                  parserOptions: {
+                    parser: { ts: requireFromCwd("@typescript-eslint/parser") },
+                  },
+                },
+              }
+            : {}),
         },
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: svelteFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

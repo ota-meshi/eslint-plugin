@@ -5,7 +5,10 @@ import type { Linter } from "eslint";
  */
 export function buildFallback(
   missingList: string[],
-  files?: string[],
+  options?: {
+    files?: string[];
+    languageOptions?: Linter.FlatConfig["languageOptions"];
+  },
 ): Linter.FlatConfig[] {
   return [
     {
@@ -17,7 +20,7 @@ export function buildFallback(
       rules: {
         "@ota-meshi/missing-module-for-config": ["error", missingList],
       },
-      ...(files ? { files } : {}),
+      ...(options ?? {}),
     },
   ];
 }

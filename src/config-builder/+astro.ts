@@ -20,13 +20,12 @@ export function buildAstro() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: astroFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

@@ -12,4 +12,6 @@ export const svelteExtendRules: Linter.RulesRecord = {
   "svelte/prefer-class-directive": "warn",
   "svelte/prefer-style-directive": "warn",
   "svelte/spaced-html-comment": "warn",
+
+  "no-use-before-define": "off",
 };

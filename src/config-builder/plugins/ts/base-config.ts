@@ -44,13 +44,12 @@ export function buildTS(files: string[]) {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

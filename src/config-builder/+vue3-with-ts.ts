@@ -9,7 +9,12 @@ import { buildVue3 } from "./+vue3.js";
 
 export function buildVue3Ts() {
   return requireOf(
-    ["eslint-plugin-vue", "vue-eslint-parser", "@typescript-eslint/parser"],
+    [
+      "eslint-plugin-vue",
+      "vue-eslint-parser",
+      "typescript-eslint",
+      "@typescript-eslint/parser",
+    ],
     (): Linter.FlatConfig[] => {
       return [
         ...buildTS(vueFiles),
@@ -28,13 +33,12 @@ export function buildVue3Ts() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: vueFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

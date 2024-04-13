@@ -22,13 +22,12 @@ export function buildToml() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: tomlFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

@@ -22,13 +22,12 @@ export function buildJson() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: jsonFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

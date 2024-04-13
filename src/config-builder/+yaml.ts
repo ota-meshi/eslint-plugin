@@ -22,13 +22,12 @@ export function buildYaml() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: yamlFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

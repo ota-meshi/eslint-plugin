@@ -1,6 +1,6 @@
 import type { Linter } from "eslint";
 import { vueExtendRules, vueFiles } from "../config-helpers/+vue.js";
-import { requireFromCwd, requireOf } from "../utils/module.js";
+import { has, requireFromCwd, requireOf } from "../utils/module.js";
 import { buildFallback } from "./fallback.js";
 import { anyParser } from "../parsers/any-parser.js";
 
@@ -16,17 +16,25 @@ export function buildVue2() {
           rules: {
             ...vueExtendRules,
           },
+          ...(has("@typescript-eslint/parser")
+            ? {
+                languageOptions: {
+                  parserOptions: {
+                    parser: { ts: requireFromCwd("@typescript-eslint/parser") },
+                  },
+                },
+              }
+            : {}),
         },
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: vueFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

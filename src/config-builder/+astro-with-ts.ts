@@ -9,7 +9,12 @@ import { buildAstro } from "./+astro.js";
 
 export function buildAstroTs() {
   return requireOf(
-    ["eslint-plugin-astro", "astro-eslint-parser", "@typescript-eslint/parser"],
+    [
+      "eslint-plugin-astro",
+      "astro-eslint-parser",
+      "typescript-eslint",
+      "@typescript-eslint/parser",
+    ],
     (): Linter.FlatConfig[] => {
       return [
         ...buildTS(astroFiles),
@@ -28,13 +33,12 @@ export function buildAstroTs() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: astroFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

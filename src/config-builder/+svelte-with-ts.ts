@@ -12,6 +12,7 @@ export function buildSvelteTs() {
     [
       "eslint-plugin-svelte",
       "svelte-eslint-parser",
+      "typescript-eslint",
       "@typescript-eslint/parser",
     ],
     (): Linter.FlatConfig[] => {
@@ -32,13 +33,12 @@ export function buildSvelteTs() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: svelteFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

@@ -35,13 +35,12 @@ export function buildMd() {
       ];
     },
     (missingList) => [
-      {
+      ...buildFallback(missingList, {
         files: mdFiles,
         languageOptions: {
           parser: anyParser,
         },
-        ...buildFallback(missingList),
-      },
+      }),
     ],
   );
 }

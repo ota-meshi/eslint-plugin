@@ -1,6 +1,10 @@
 import type { Linter } from "eslint";
 const lineBreakPattern = /\r\n|[\n\r\u2028\u2029]/u;
 
+export const meta = {
+  name: __filename,
+  version: require("../../package.json").version,
+};
 export function parseForESLint(
   text: string,
   _options?: any,
@@ -28,4 +32,4 @@ export function parseForESLint(
   };
 }
 
-export const anyParser = { parseForESLint };
+export const anyParser = { parseForESLint, meta };

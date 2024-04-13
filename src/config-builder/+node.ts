@@ -27,10 +27,6 @@ export function buildNode() {
         },
       ];
     },
-    (missingList) =>
-      buildFallback(missingList).map((config) => ({
-        ...config,
-        files: nodeFiles,
-      })),
+    (missingList) => buildFallback(missingList, { files: nodeFiles }),
   );
 }
