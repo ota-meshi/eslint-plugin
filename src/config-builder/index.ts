@@ -51,6 +51,13 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
 
     // Kind of package
     ...(options?.eslintPlugin ? buildESLintPlugin() : []),
+
+    // Basic Languages
+    ...(options?.ts ? buildTs() : []),
+    ...(options?.json ? buildJson() : []),
+    ...(options?.yaml ? buildYaml() : []),
+    ...(options?.toml ? buildToml() : []),
+    ...(options?.md ? buildMd() : []),
   ];
 
   // Frameworks
@@ -60,12 +67,6 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
   applyFw(options.astro, buildAstro, buildAstroTs);
 
   configs.push(
-    // Languages
-    ...(options?.ts ? buildTs() : []),
-    ...(options?.json ? buildJson() : []),
-    ...(options?.yaml ? buildYaml() : []),
-    ...(options?.toml ? buildToml() : []),
-    ...(options?.md ? buildMd() : []),
 
     // Format
     ...(options?.prettier ? buildPrettier() : []),
