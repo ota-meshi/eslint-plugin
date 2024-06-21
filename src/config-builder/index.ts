@@ -67,6 +67,7 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
   applyFw(options.astro, buildAstro, buildAstroTs);
 
   configs.push(
+
     // Format
     ...(options?.prettier ? buildPrettier() : []),
   );
@@ -78,7 +79,6 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
     builder: () => Linter.FlatConfig[],
     tsBuilder: () => Linter.FlatConfig[],
   ) {
-    if (!option) return;
     configs.push(...builder());
     const ts =
       (typeof option === "object" ? option.withTs : null) ?? options?.ts;
