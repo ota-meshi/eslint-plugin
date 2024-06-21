@@ -10,12 +10,7 @@ import { extInMdFiles } from "../../../config-helpers/+md.js";
 
 export function buildTS(files: string[]) {
   return requireOf(
-    [
-      "typescript",
-      "typescript-eslint",
-      "@typescript-eslint/eslint-plugin",
-      "@typescript-eslint/parser",
-    ],
+    ["typescript", "typescript-eslint"],
     (): Linter.FlatConfig[] => {
       const tseslint = requireFromCwd("typescript-eslint");
       return [
