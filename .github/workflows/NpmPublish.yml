@@ -13,7 +13,7 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v4
         with:
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - name: Install Packages
         run: yarn
       - name: Build

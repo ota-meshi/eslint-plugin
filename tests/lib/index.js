@@ -53,23 +53,30 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
   });
 
   it("should lint without errors (for legacy config)", async () => {
-    const LegacyESLint = await loadESLint?.({ useFlatConfig: false });
-    const engine = new LegacyESLint({
-      cwd: LEGACY_CONFIG_TEST_CWD,
-      fix: true,
-    });
-    const results = await engine.lintFiles([LEGACY_CONFIG_TEST_CWD]);
-    await LegacyESLint.outputFixes(results);
+    // eslint-disable-next-line no-process-env -- Testing environment
+    process.env.ESLINT_USE_FLAT_CONFIG = "false";
     try {
-      assert.deepStrictEqual(
-        results.flatMap((r) =>
-          r.messages.map((m) => ({ ...m, filePath: r.filePath })),
-        ),
-        [],
-      );
-    } catch (e) {
-      console.log(results.flatMap((r) => r.messages));
-      throw e;
+      const LegacyESLint = await loadESLint?.({ useFlatConfig: false });
+      const engine = new LegacyESLint({
+        cwd: LEGACY_CONFIG_TEST_CWD,
+        fix: true,
+      });
+      const results = await engine.lintFiles([LEGACY_CONFIG_TEST_CWD]);
+      await LegacyESLint.outputFixes(results);
+      try {
+        assert.deepStrictEqual(
+          results.flatMap((r) =>
+            r.messages.map((m) => ({ ...m, filePath: r.filePath })),
+          ),
+          [],
+        );
+      } catch (e) {
+        console.log(results.flatMap((r) => r.messages));
+        throw e;
+      }
+    } finally {
+      // eslint-disable-next-line no-process-env -- Testing environment
+      delete process.env.ESLINT_USE_FLAT_CONFIG;
     }
   });
 });

@@ -1,5 +1,5 @@
 {
-  "eslint.validate": ["javascript", "json", "jsonc"],
+  "eslint.validate": ["javascript", "json", "jsonc", "yaml"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   }
