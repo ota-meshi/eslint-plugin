@@ -13,7 +13,19 @@ export function buildJsonSchema(files: string[]) {
       );
       return [
         ...eslintPluginJsonSchemaValidator.configs["flat/recommended"].map(
-          (config: Linter.FlatConfig) => ({ files, ...config }),
+          (config: Linter.FlatConfig) => {
+            if (config.files == null) {
+              return { ...config, files };
+            }
+            if (
+              config.files
+                .flat()
+                .some((file) => files.some((suffix) => file.endsWith(suffix)))
+            ) {
+              return config;
+            }
+            return { files };
+          },
         ),
         {
           files,
