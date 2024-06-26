@@ -22,7 +22,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pretest": "yarn build",
-    "test": "mocha \"tests/lib/**/*.js\" --reporter dot --timeout 60000"
+    "test": "mocha \"tests/lib/**/*.{js,mjs}\" --reporter dot --timeout 60000"
   },
   "peerDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
