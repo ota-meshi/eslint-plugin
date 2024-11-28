@@ -9,7 +9,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-n@17.2.0"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:n/recommended"],
     overrides: [
       {

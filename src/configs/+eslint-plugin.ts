@@ -8,7 +8,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-eslint-plugin"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     plugins: ["eslint-plugin"],
     overrides: [
       {

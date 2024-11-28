@@ -15,7 +15,7 @@ export = requireOf(
     "typescript",
     "@typescript-eslint/eslint-plugin",
   ],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     overrides: [
       {
         files: tsFiles,

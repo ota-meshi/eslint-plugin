@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "../fallback.js";
 
 export = requireOf(
   ["@eslint-community/eslint-plugin-eslint-comments"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:@eslint-community/eslint-comments/recommended"],
     rules: {
       ...eslintCommentsExtendRules,

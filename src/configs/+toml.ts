@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-toml"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:toml/standard"],
     overrides: [
       {

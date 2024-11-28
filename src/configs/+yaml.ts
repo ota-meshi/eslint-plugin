@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-yml"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     overrides: [
       {
         files: yamlFiles,

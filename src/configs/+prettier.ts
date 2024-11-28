@@ -18,7 +18,7 @@ function getConfigArrayIfHasConfig(config: string) {
 
 export = requireOf(
   ["eslint-plugin-prettier", "eslint-config-prettier", "prettier"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     plugins: ["prettier"],
     extends: [
       "prettier",
