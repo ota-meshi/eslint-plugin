@@ -3,7 +3,9 @@ import type { Linter } from "eslint";
 /**
  * Fallback Legacy config builder
  */
-export function buildFallbackForLegacy(missingList: string[]): Linter.Config {
+export function buildFallbackForLegacy(
+  missingList: string[],
+): Linter.LegacyConfig {
   return {
     plugins: ["@ota-meshi"],
     rules: {

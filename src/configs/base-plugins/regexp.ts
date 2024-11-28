@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "../fallback.js";
 
 export = requireOf(
   ["eslint-plugin-regexp@1.0.0"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:regexp/recommended"],
     rules: {
       ...regexpExtendRules,

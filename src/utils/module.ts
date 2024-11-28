@@ -15,6 +15,41 @@ export function requireFromCwd(modulePath: string) {
   }
   return requireFunction(modulePath);
 }
+export function importFromCwd(modulePath: string) {
+  try {
+    return import(modulePath);
+  } catch {
+    // ignore
+  }
+  const pkg = requireFromCwd(`${modulePath}/package.json`);
+  const mainPath = findMainPath(pkg);
+  if (!mainPath) {
+    throw new Error(`Cannot find main path of ${modulePath}`);
+  }
+  const moduleRootPath = path.dirname(
+    resolveFromCwd(`${modulePath}/package.json`),
+  );
+  return import(path.join(moduleRootPath, mainPath));
+}
+
+function findMainPath(pkg: any) {
+  const exports = pkg.exports;
+  if (!exports) {
+    return pkg.module ?? pkg.main;
+  }
+  return findMainPathFromExports(exports);
+}
+
+function findMainPathFromExports(exports: any) {
+  if (typeof exports === "string") {
+    return exports;
+  }
+  if (exports?.["."]) {
+    return findMainPathFromExports(exports["."]);
+  }
+  return exports?.import ?? exports?.require ?? exports?.default;
+}
+
 export function resolveFromCwd(modulePath: string) {
   if (!requireFunction) {
     requireFunction = createRequire(
@@ -43,15 +78,19 @@ export function has(name: string): boolean {
   let modulePath;
   try {
     modulePath = resolveFromCwd(moduleName);
-  } catch (_e) {
-    return false;
+  } catch {
+    try {
+      modulePath = path.dirname(resolveFromCwd(`${moduleName}/package.json`));
+    } catch {
+      return false;
+    }
   }
   if (version) {
     const moduleRootPath = findRootDir(modulePath);
     try {
       const pkg = requireFromCwd(`${moduleRootPath}/package.json`);
       return semver.lte(version, pkg.version);
-    } catch (_e) {
+    } catch {
       return false;
     }
   }
@@ -61,7 +100,7 @@ export function has(name: string): boolean {
 /**
  * Checks exists module and return config
  */
-export function requireOf<C extends Linter.FlatConfig[] | Linter.Config>(
+export function requireOf<C extends Linter.Config[] | Linter.LegacyConfig>(
   names: string[],
   getConfig: () => C,
   fallback: (missingList: string[]) => C,

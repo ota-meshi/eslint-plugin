@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-svelte@2.9.0"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     overrides: [
       {
         files: svelteFiles,

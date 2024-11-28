@@ -15,7 +15,7 @@ export function buildSvelteTs() {
       "typescript-eslint",
       "@typescript-eslint/parser",
     ],
-    (): Linter.FlatConfig[] => {
+    (): Linter.Config[] => {
       return [
         ...buildTS(svelteFiles),
         {

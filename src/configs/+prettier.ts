@@ -10,7 +10,7 @@ function getConfigArrayIfHasConfig(config: string) {
   try {
     const configPath = resolveFromCwd(`eslint-config-${config}`);
     requireFromCwd(configPath);
-  } catch (_e) {
+  } catch {
     return [];
   }
   return [config];
@@ -18,7 +18,7 @@ function getConfigArrayIfHasConfig(config: string) {
 
 export = requireOf(
   ["eslint-plugin-prettier", "eslint-config-prettier", "prettier"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     plugins: ["prettier"],
     extends: [
       "prettier",

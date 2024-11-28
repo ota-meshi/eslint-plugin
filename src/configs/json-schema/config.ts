@@ -6,7 +6,7 @@ import { buildFallbackForLegacy } from "../fallback.js";
 
 export = requireOf(
   ["eslint-plugin-json-schema-validator"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:json-schema-validator/recommended"],
     rules: {
       ...jsonSchemaExtendRules,

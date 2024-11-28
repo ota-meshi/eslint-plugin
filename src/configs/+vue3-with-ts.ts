@@ -12,7 +12,7 @@ export = requireOf(
     "eslint-plugin-vue",
     "vue-eslint-parser",
   ],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     overrides: [
       {
         files: vueFiles,

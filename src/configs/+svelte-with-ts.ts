@@ -11,7 +11,7 @@ export = requireOf(
     "@typescript-eslint/eslint-plugin",
     "svelte-eslint-parser",
   ],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     overrides: [
       {
         files: svelteFiles,

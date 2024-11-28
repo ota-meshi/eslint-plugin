@@ -5,7 +5,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-vue", "vue-eslint-parser"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     extends: ["plugin:vue/vue3-recommended"],
     overrides: [
       {

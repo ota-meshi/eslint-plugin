@@ -5,7 +5,7 @@ import { jsdocRules } from "../../config-helpers/base-plugins/jsdoc.js";
 
 export = requireOf(
   ["eslint-plugin-jsdoc"],
-  (): Linter.Config => ({
+  (): Linter.LegacyConfig => ({
     plugins: ["jsdoc"],
     rules: {
       ...jsdocRules,

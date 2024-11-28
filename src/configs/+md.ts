@@ -6,7 +6,7 @@ import { buildFallbackForLegacy } from "./fallback.js";
 
 export = requireOf(
   ["eslint-plugin-markdown"],
-  (): Linter.Config => {
+  (): Linter.LegacyConfig => {
     const version = requireFromCwd(
       "eslint-plugin-markdown/package.json",
     ).version;

@@ -75,8 +75,8 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
 
   function applyFw(
     option: undefined | boolean | { withTs?: boolean },
-    builder: () => Linter.FlatConfig[],
-    tsBuilder: () => Linter.FlatConfig[],
+    builder: () => Linter.Config[],
+    tsBuilder: () => Linter.Config[],
   ) {
     if (!option) return;
     configs.push(...builder());
