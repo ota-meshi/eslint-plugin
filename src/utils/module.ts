@@ -16,11 +16,40 @@ export function requireFromCwd(modulePath: string) {
   return requireFunction(modulePath);
 }
 export function importFromCwd(modulePath: string) {
+  try {
+    return import(modulePath);
+  } catch {
+    // ignore
+  }
+  const pkg = requireFromCwd(`${modulePath}/package.json`);
+  const mainPath = findMainPath(pkg);
+  if (!mainPath) {
+    throw new Error(`Cannot find main path of ${modulePath}`);
+  }
   const moduleRootPath = path.dirname(
     resolveFromCwd(`${modulePath}/package.json`),
   );
-  return import(moduleRootPath);
+  return import(path.join(moduleRootPath, mainPath));
 }
+
+function findMainPath(pkg: any) {
+  const exports = pkg.exports;
+  if (!exports) {
+    return pkg.module ?? pkg.main;
+  }
+  return findMainPathFromExports(exports);
+}
+
+function findMainPathFromExports(exports: any) {
+  if (typeof exports === "string") {
+    return exports;
+  }
+  if (exports?.["."]) {
+    return findMainPathFromExports(exports["."]);
+  }
+  return exports?.import ?? exports?.require ?? exports?.default;
+}
+
 export function resolveFromCwd(modulePath: string) {
   if (!requireFunction) {
     requireFunction = createRequire(
