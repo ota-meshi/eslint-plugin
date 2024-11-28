@@ -10,7 +10,7 @@ function getConfigArrayIfHasConfig(config: string) {
   try {
     const configPath = resolveFromCwd(`eslint-config-${config}`);
     requireFromCwd(configPath);
-  } catch (_e) {
+  } catch {
     return [];
   }
   return [config];

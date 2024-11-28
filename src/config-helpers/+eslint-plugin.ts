@@ -70,7 +70,7 @@ function rulesDocumentUrl() {
     if (baseUrl) {
       return `${baseUrl}/blob/v${version}/docs/rules/{{name}}.md`;
     }
-  } catch (_error) {
+  } catch {
     // ignore
   }
   return undefined;
