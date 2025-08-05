@@ -13,7 +13,8 @@ export function requireFromCwd(modulePath: string) {
       path.join(process.cwd(), "__placeholder__.js"),
     );
   }
-  return requireFunction(modulePath);
+  const module = requireFunction(modulePath);
+  return module.default ?? module;
 }
 export function importFromCwd(modulePath: string) {
   try {

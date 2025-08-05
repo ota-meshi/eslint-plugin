@@ -14,7 +14,8 @@ export function buildESLintPlugin() {
       const eslintPlugin = requireFromCwd("eslint-plugin-eslint-plugin");
       return [
         {
-          ...eslintPlugin.configs["flat/recommended"],
+          ...(eslintPlugin.configs["flat/recommended"] ||
+            eslintPlugin.configs.recommended),
           files: eslintPluginFiles,
         },
         ...buildNode(),
