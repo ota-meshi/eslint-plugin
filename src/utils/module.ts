@@ -90,7 +90,11 @@ export function has(name: string): boolean {
     const moduleRootPath = findRootDir(modulePath);
     try {
       const pkg = requireFromCwd(`${moduleRootPath}/package.json`);
-      return semver.lte(version, pkg.version);
+      if (semver.parse(version, false, false)) {
+        return semver.lte(version, pkg.version);
+      }
+
+      return semver.satisfies(pkg.version, version);
     } catch {
       return false;
     }

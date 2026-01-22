@@ -26,8 +26,8 @@
   },
   "peerDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
-    "eslint": "^7.0.0 || ^8.0.0 || ^9.0.0",
-    "eslint-plugin-regexp": "^2.5.0"
+    "eslint": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
+    "eslint-plugin-regexp": "^2.5.0 || ^3.0.0"
   },
   "dependencies": {
     "@eslint/js": "^9.5.0",
