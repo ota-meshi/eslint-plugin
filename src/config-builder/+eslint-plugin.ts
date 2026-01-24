@@ -7,7 +7,7 @@ import {
 import { buildFallback } from "./fallback.js";
 import { buildNode } from "./+node.js";
 
-export function buildESLintPlugin() {
+export function buildESLintPlugin(withTs: boolean | undefined) {
   return requireOf(
     ["eslint-plugin-eslint-plugin@5.5.1"],
     (): Linter.FlatConfig[] => {
@@ -18,7 +18,7 @@ export function buildESLintPlugin() {
             eslintPlugin.configs.recommended),
           files: eslintPluginFiles,
         },
-        ...buildNode(),
+        ...buildNode(withTs),
         {
           files: eslintPluginFiles,
           rules: {

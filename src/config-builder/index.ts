@@ -50,7 +50,7 @@ export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
     ...(options?.packageJson ? buildPackageJson() : []),
 
     // Kind of package
-    ...(options?.eslintPlugin ? buildESLintPlugin() : []),
+    ...(options?.eslintPlugin ? buildESLintPlugin(options?.ts) : []),
 
     // Basic Languages
     ...(options?.ts ? buildTs() : []),
