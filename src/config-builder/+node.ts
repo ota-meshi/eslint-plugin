@@ -31,7 +31,7 @@ export function buildNode(withTs: boolean | undefined) {
                       if (f.endsWith("*.mjs")) {
                         return [f, f.replace("*.mjs", "*.mts")];
                       }
-                      return f;
+                      return [f];
                     })
                   : config.files
                 : nodeFiles,
