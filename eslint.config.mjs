@@ -42,5 +42,12 @@ export default [
         project: true,
       },
     },
+    rules: {
+      "n/file-extension-in-import": [
+        "error",
+        "always",
+        { ".js": "always", ".ts": "always", ".tsx": "never" },
+      ],
+    },
   },
 ];
