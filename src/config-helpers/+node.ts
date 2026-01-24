@@ -1,9 +1,20 @@
 import type { Linter } from "eslint";
 
-export const nodeFiles = [`*.js`, `*.mjs`, `*.cjs`].flatMap((p) => [
-  p,
-  `**/${p}`,
-]);
+const nodeFiles = [`*.js`, `*.mjs`, `*.cjs`].flatMap((p) => [p, `**/${p}`]);
+const nodeFilesWithTs = [
+  `*.js`,
+  `*.ts`,
+  `*.mjs`,
+  `*.mts`,
+  `*.cjs`,
+  `*.cts`,
+].flatMap((p) => [p, `**/${p}`]);
+export function getNodeFiles(withTs: boolean | undefined) {
+  if (withTs) {
+    return nodeFilesWithTs;
+  }
+  return nodeFiles;
+}
 export const nodeEcmaFeatures = { globalReturn: true };
 export const nodeExtendRules: Linter.RulesRecord = {
   "n/exports-style": ["error", "module.exports"],

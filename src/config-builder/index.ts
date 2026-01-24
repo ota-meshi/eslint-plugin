@@ -46,7 +46,7 @@ export type BuildConfigOptions = {
 export function buildConfig(options: BuildConfigOptions): Linter.FlatConfig[] {
   const configs: Linter.FlatConfig[] = [
     ...buildRecommended(),
-    ...(options?.node ? buildNode() : []),
+    ...(options?.node ? buildNode(options?.ts) : []),
     ...(options?.packageJson ? buildPackageJson() : []),
 
     // Kind of package
