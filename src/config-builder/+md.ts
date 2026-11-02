@@ -1,21 +1,35 @@
 import type { Linter } from "eslint";
-import { requireFromCwd, requireOf } from "../utils/module.js";
+import { pathToFileURL } from "url";
+import {
+  has,
+  requireFromCwd,
+  requireOf,
+  resolveFromCwd,
+} from "../utils/module.js";
 import { jsInMdFiles, jsInMdRules, mdFiles } from "../config-helpers/+md.js";
 import { buildFallback } from "./fallback.js";
 import { anyParser } from "../parsers/any-parser.js";
+import { flattenConfig } from "./flatten.js";
 
 export function buildMd() {
+  const moduleName =
+    !has("@eslint/markdown") && has("eslint-plugin-markdown@4.0.0")
+      ? "eslint-plugin-markdown"
+      : "@eslint/markdown";
   return requireOf(
-    ["eslint-plugin-markdown@4.0.0"],
+    [moduleName],
     (): Linter.FlatConfig[] => {
-      const markdown = requireFromCwd("eslint-plugin-markdown");
+      const pluginConfigs =
+        moduleName === "@eslint/markdown"
+          ? flattenConfig(
+              import(pathToFileURL(resolveFromCwd(moduleName)).href).then(
+                ({ default: markdown }) => [{ plugins: { markdown } }],
+              ),
+            )
+          : [{ plugins: { markdown: requireFromCwd(moduleName) } }];
 
       return [
-        {
-          plugins: {
-            markdown,
-          },
-        },
+        ...pluginConfigs,
         {
           files: mdFiles,
           processor: "markdown/markdown",
