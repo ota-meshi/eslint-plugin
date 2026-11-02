@@ -14,15 +14,29 @@ const LEGACY_CONFIG_TEST_CWD = path.join(
   __dirname,
   "../fixtures/legacy-config-test",
 );
+const LEGACY_PLUGINS = new Map([
+  [
+    "eslint-plugin-json-schema-validator",
+    "eslint-plugin-json-schema-validator-legacy",
+  ],
+  ["eslint-plugin-jsonc", "eslint-plugin-jsonc-legacy"],
+  ["eslint-plugin-regexp", "eslint-plugin-regexp-legacy"],
+  ["eslint-plugin-yml", "eslint-plugin-yml-legacy"],
+]);
 
 describe("Integration with @ota-meshi/eslint-plugin", () => {
   const resolveFilename = Module._resolveFilename;
+  let useLegacyPlugins = false;
   before(() => {
-    Module._resolveFilename = function (id) {
+    Module._resolveFilename = function (id, ...args) {
       if (id === "@ota-meshi/eslint-plugin") {
         return require.resolve("../..");
       }
-      return resolveFilename.apply(this, arguments);
+      return resolveFilename.call(
+        this,
+        useLegacyPlugins ? (LEGACY_PLUGINS.get(id) ?? id) : id,
+        ...args,
+      );
     };
   });
 
@@ -53,6 +67,7 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
   });
 
   it("should lint without errors (for legacy config)", async () => {
+    useLegacyPlugins = true;
     // eslint-disable-next-line no-process-env -- Testing environment
     process.env.ESLINT_USE_FLAT_CONFIG = "false";
     try {
@@ -75,6 +90,7 @@ describe("Integration with @ota-meshi/eslint-plugin", () => {
         throw e;
       }
     } finally {
+      useLegacyPlugins = false;
       // eslint-disable-next-line no-process-env -- Testing environment
       delete process.env.ESLINT_USE_FLAT_CONFIG;
     }
