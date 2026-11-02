@@ -29,12 +29,13 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
           node-version: lts/*
+          package-manager-cache: false
       - name: Install Packages
-        run: yarn
+        run: npm install
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Lint
-        run: yarn lint
+        run: npm run lint
       - name: check can npm-publish
         run: npx can-npm-publish
       - name: release

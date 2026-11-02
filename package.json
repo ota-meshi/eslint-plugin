@@ -9,7 +9,7 @@
     "JounQin (https://github.com/JounQin)"
   ],
   "license": "MIT",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "npm@11.20.0",
   "engines": {
     "node": "^18.18.0||^20.9.0||>=21.1.0"
   },
@@ -21,7 +21,7 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "pretest": "yarn build",
+    "pretest": "npm run build",
     "test": "mocha \"tests/lib/**/*.{js,mjs}\" --reporter dot --timeout 60000"
   },
   "peerDependencies": {
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
+    "@eslint/core": "^0.17.0",
     "@eslint/markdown": "^8.0.0",
     "@types/eslint": "^9.0.0",
     "@types/eslint__js": "^8.42.3",
