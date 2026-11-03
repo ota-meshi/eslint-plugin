@@ -51,7 +51,7 @@
     "eslint-plugin-json-schema-validator": "^6.3.2",
     "eslint-plugin-json-schema-validator-legacy": "npm:eslint-plugin-json-schema-validator@^5.0.0",
     "eslint-plugin-jsonc": "^3.4.2",
-    "eslint-plugin-jsonc-legacy": "npm:eslint-plugin-jsonc@^2.0.0",
+    "eslint-plugin-jsonc-legacy": "npm:eslint-plugin-jsonc@^3.0.0",
     "eslint-plugin-markdown": "^5.0.0",
     "eslint-plugin-n": "^18.0.0",
     "eslint-plugin-node-dependencies": "^2.0.0",
