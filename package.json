@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
-    "@eslint/core": "^0.17.0",
+    "@eslint/core": "^1.0.0",
     "@eslint/markdown": "^8.0.0",
     "@types/eslint": "^9.0.0",
     "@types/eslint__js": "^8.42.3",
